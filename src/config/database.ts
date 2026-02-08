@@ -1,6 +1,7 @@
 import { DataSource } from 'typeorm';
 import { env } from './env';
 import { Post } from '../models/Post';
+import { User } from '../models/User';
 import { logger } from '../utils/logger';
 
 export const AppDataSource = new DataSource({
@@ -12,7 +13,7 @@ export const AppDataSource = new DataSource({
   database: env.DATABASE_NAME,
   synchronize: env.DATABASE_SYNCHRONIZE,
   logging: env.DATABASE_LOGGING,
-  entities: [Post],
+  entities: [Post, User],
   migrations: ['src/migrations/**/*.ts'],
   subscribers: [],
 });

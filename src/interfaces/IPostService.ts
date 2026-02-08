@@ -7,6 +7,7 @@ export interface CreatePostDto {
   excerpt?: string;
   featuredImage?: string;
   status?: PostStatus;
+  authorId: string;
 }
 
 export interface UpdatePostDto {

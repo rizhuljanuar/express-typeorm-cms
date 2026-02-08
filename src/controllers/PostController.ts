@@ -13,7 +13,10 @@ export class PostController {
 
   createPost = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
-      const postData: CreatePostDto = req.body;
+      const postData = {
+        ...req.body,
+        authorId: req.user!.id, // Set authorId from authenticated user
+      };
       const post = await this.postService.createPost(postData);
 
       res.status(HTTP_STATUS.CREATED).json({

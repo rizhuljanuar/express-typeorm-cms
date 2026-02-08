@@ -13,7 +13,7 @@ export class PostService implements IPostService {
 
   async createPost(data: CreatePostDto): Promise<Post> {
     try {
-      logger.info('Creating new post', { title: data.title });
+      logger.info('Creating new post', { title: data.title, authorId: data.authorId });
       
       const postData = {
         ...data,

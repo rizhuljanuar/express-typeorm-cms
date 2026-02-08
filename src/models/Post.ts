@@ -5,7 +5,10 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   DeleteDateColumn,
+  ManyToOne,
+  JoinColumn,
 } from 'typeorm';
+import { User } from './User';
 
 export enum PostStatus {
   DRAFT = 'draft',
@@ -39,6 +42,15 @@ export class Post {
 
   @Column({ type: 'int', default: 0 })
   viewCount!: number;
+
+  @ManyToOne(() => User, (user) => user.posts, {
+    onDelete: 'CASCADE',
+  })
+  @JoinColumn({ name: 'authorId' })
+  author!: User;
+
+  @Column({ name: 'authorId' })
+  authorId!: string;
 
   @CreateDateColumn({ type: 'timestamp' })
   createdAt!: Date;

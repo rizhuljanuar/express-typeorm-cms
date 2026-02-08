@@ -6,6 +6,8 @@ import { rateLimiter } from './middlewares/rateLimiter';
 import { errorHandler } from './middlewares/errorHandler';
 import { logger } from './utils/logger';
 import postRoutes from './routes/post.routes';
+import authRoutes from './routes/auth.routes';
+import userRoutes from './routes/user.routes';
 import { env } from './config/env';
 
 export const createApp = (): Application => {
@@ -42,6 +44,8 @@ export const createApp = (): Application => {
   });
 
   // API routes
+  app.use('/api/auth', authRoutes);
+  app.use('/api/users', userRoutes);
   app.use('/api/posts', postRoutes);
 
   // 404 handler

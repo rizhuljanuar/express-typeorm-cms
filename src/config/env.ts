@@ -10,6 +10,8 @@ const envSchema = z.object({
   DATABASE_NAME: z.string().default('cms_db'),
   DATABASE_SYNCHRONIZE: z.string().transform((val) => val === 'true').default(false),
   DATABASE_LOGGING: z.string().transform((val) => val === 'true').default(false),
+  JWT_SECRET: z.string().default('your-super-secret-key-change-in-production'),
+  JWT_EXPIRES_IN: z.string().default('7d'),
 });
 
 export type Env = z.infer<typeof envSchema>;
